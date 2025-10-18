@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | Теплицы школы 137</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a93cb 0%, #a4bfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6a93cb;
+            box-shadow: 0 0 0 3px rgba(106, 147, 203, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #6a93cb, #5b8ac4);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #5b8ac4, #4a7bb8);
+            transform: scale(1.02);
+        }
+
+        .error-message {
+            background-color: #ffd6d6;
+            color: #c0392b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none; /* Скрыто по умолчанию */
+        }
+
+        .footer {
+            margin-top: 25px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="header">
+        <h1 class="title">Теплицы школы 137</h1>
+        <p class="subtitle">Вход в систему</p>
+    </div>
+
+    <!-- Форма логина Spring Security -->
+    <form method="post" action="/login">
+        <div class="form-group">
+            <label for="username">Логин</label>
+            <input type="text" id="username" name="username" placeholder="Введите ваш логин" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" placeholder="Введите ваш пароль" required>
+        </div>
+
+        <button type="submit" class="btn">Войти</button>
+
+        <!-- Отображение ошибки, если параметр error есть в URL -->
+        <div th:if="${param.error}" class="error-message" id="errorMessage">
+            Неверный логин или пароль
+        </div>
+    </form>
+
+    <div class="footer">
+        <p>© 2025 Школа 137. Все права защищены.</p>
+    </div>
+</div>
+</body>
+</html>
