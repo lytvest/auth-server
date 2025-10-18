@@ -1,23 +1,14 @@
 plugins {
-    java
-    id("org.springframework.boot") version "3.3.4" // или та, что указана
-    id("io.spring.dependency-management") version "1.1.6"
+    id("org.springframework.boot") version "3.1.5"
+    id("io.spring.dependency-management") version "1.1.3"
+    id("java")
 }
 
-group = "ru.lytvest"
+group = "com.example"
 version = "0.0.1-SNAPSHOT"
-description = "auth-server"
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
+    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -25,21 +16,11 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-mustache")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-authorization-server")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    // Явно добавим зависимость, на всякий случай
-    implementation("org.springframework.security:spring-security-oauth2-authorization-server")
-    compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.security:spring-security-oauth2-authorization-server:1.1.3")
+    implementation("com.h2database:h2")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
