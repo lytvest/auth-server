@@ -43,10 +43,13 @@ public class AuthorizationServerConfig {
         return new InMemoryRegisteredClientRepository(client);
     }
 
+
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:9000")
+                .issuer("https://greenbots.ru/ya-auth")
+                .authorizationEndpoint("/oauth2/authorize")
+                .tokenEndpoint("/oauth2/token")
                 .build();
     }
 

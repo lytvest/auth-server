@@ -23,4 +23,7 @@ logging:
 # Spring Boot автоматически настроит JwtDecoder, используя issuer URI для поиска JWK Set
 # Он ожидает, что JWK Set будет доступен по <issuer-uri>/oauth2/jwks
 # Используйте тот же адрес, что и ваш сервер
-spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8000
+#spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8000
+
+logging.level.org.springframework.security: DEBUG
+logging.level.org.springframework.security.oauth2: DEBUG
