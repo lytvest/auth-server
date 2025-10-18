@@ -25,5 +25,5 @@ logging:
 # Используйте тот же адрес, что и ваш сервер
 #spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8000
 
-logging.level.org.springframework.security: DEBUG
-logging.level.org.springframework.security.oauth2: DEBUG
+logging.level.org.springframework.security: trace
+logging.level.org.springframework.security.oauth2: trace
