@@ -50,7 +50,7 @@ public class SecurityConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/css/**", "/images/**", "/error").permitAll()
+                        .requestMatchers("/", "/login", "/css/**", "/images/**", "/error", "/debug/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
