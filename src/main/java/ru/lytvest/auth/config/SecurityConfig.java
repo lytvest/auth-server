@@ -27,6 +27,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import java.util.UUID;
 
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -69,10 +70,8 @@ public class SecurityConfig {
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("https://social.yandex.net/broker/redirect")
-                .redirectUri("http://127.0.0.1:8080/authorized")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
-                .scope("read")
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(false)
                         .build())
