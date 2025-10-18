@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Теплицы школы 137 - Главная</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="greenhouse-container">
+  <div class="greenhouse-background">
+    <div class="plants">
+      <div class="plant plant-1"></div>
+      <div class="plant plant-2"></div>
+      <div class="plant plant-3"></div>
+      <div class="plant plant-4"></div>
+    </div>
+  </div>
+
+  <div class="login-form-container">
+    <div class="school-header">
+      <div class="school-logo">
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+      </div>
+      <h1>Теплицы школы 137</h1>
+      <p class="subtitle">Добро пожаловать!</p>
+    </div>
+
+    <div style="text-align: center; margin: 2rem 0;">
+      <p style="color: #2e7d32; margin-bottom: 1rem;">Вы успешно авторизованы в системе</p>
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="login-btn" style="background: linear-gradient(135deg, #78909c 0%, #546e7a 100%);">
+          <span>Выйти</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теплицы школы 137 - Авторизация успешна</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="greenhouse-container">
+    <div class="greenhouse-background">
+        <div class="plants">
+            <div class="plant plant-1"></div>
+            <div class="plant plant-2"></div>
+            <div class="plant plant-3"></div>
+            <div class="plant plant-4"></div>
+        </div>
+    </div>
+
+    <div class="login-form-container">
+        <div class="school-header">
+            <div class="school-logo">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+            <h1>Теплицы школы 137</h1>
+            <p class="subtitle">Авторизация успешна!</p>
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0;">
+            <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h3 style="color: #2e7d32; margin-bottom: 1rem;">✓ Авторизация завершена</h3>
+                <p style="color: #4caf50;">Вы успешно авторизованы в системе OAuth2</p>
+            </div>
+
+            <p style="color: #78909c; margin-bottom: 1.5rem;">
+                Теперь вы можете вернуться в приложение или закрыть эту вкладку.
+            </p>
+
+            <button onclick="window.close()" class="login-btn"
+                    style="background: linear-gradient(135deg, #78909c 0%, #546e7a 100%);">
+                <span>Закрыть окно</span>
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>Школа №137 &copy; 2024. OAuth2 Authorization Server</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
