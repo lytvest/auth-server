@@ -32,6 +32,7 @@ public class AuthorizationServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .redirectUri("http://127.0.0.1:8080/authorized")
                 .redirectUri("https://oauth.pstmn.io/v1/callback")
+                .redirectUri("https://social.yandex.net/broker/redirect")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .scope("read")
