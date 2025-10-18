@@ -3,6 +3,8 @@ spring.application.name: auth-server
 server:
   port: 9000
   forward-headers-strategy: framework
+  servlet:
+    context-path: /ya-auth
 
 
 logging:
