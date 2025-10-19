@@ -63,7 +63,7 @@ public class SecurityConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login", "/css/**", "/error").permitAll()
+                        .requestMatchers("/login", "/css/**", "/error", "/debug-auth").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
