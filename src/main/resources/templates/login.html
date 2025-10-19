@@ -1,59 +1,316 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Теплицы школы 137 - Авторизация</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Вход - Теплицы школы 137</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .greenhouse-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            z-index: 1;
+        }
+
+        .greenhouse {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px 20px 200px 200px;
+            padding: 40px 40px 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greenhouse::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A, #4CAF50);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .greenhouse::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(76, 175, 80, 0.1));
+        }
+
+        .roof {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 60px solid #4CAF50;
+            filter: drop-shadow(0 -5px 10px rgba(0,0,0,0.2));
+        }
+
+        .roof::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -180px;
+            width: 0;
+            height: 0;
+            border-left: 180px solid transparent;
+            border-right: 180px solid transparent;
+            border-bottom: 50px solid rgba(139, 195, 74, 0.8);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        h1 {
+            color: #2E7D32;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #66BB6A;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2E7D32;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #C8E6C9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #F1F8E9;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background: #FFEBEE;
+            color: #C62828;
+            border-left: 4px solid #C62828;
+        }
+
+        .alert-success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .plants {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+        }
+
+        .plant {
+            font-size: 40px;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        .plant:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .plant:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .plant:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes grow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .demo-credentials {
+            background: #E8F5E9;
+            border: 2px dashed #4CAF50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #2E7D32;
+        }
+
+        .demo-credentials h3 {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .demo-credentials p {
+            margin: 5px 0;
+        }
+
+        .demo-credentials code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
 </head>
 <body>
 <div class="greenhouse-container">
-    <div class="greenhouse-background">
-        <div class="plants">
-            <div class="plant plant-1"></div>
-            <div class="plant plant-2"></div>
-            <div class="plant plant-3"></div>
-            <div class="plant plant-4"></div>
-        </div>
-    </div>
-
-    <div class="login-form-container">
-        <div class="school-header">
-            <div class="school-logo">
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-                <div class="leaf"></div>
-            </div>
+    <div class="roof"></div>
+    <div class="greenhouse">
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
             <h1>Теплицы школы 137</h1>
             <p class="subtitle">Система авторизации</p>
         </div>
 
-        <form class="login-form" th:action="@{/login}" method="post">
-            <div th:if="${param.error}" class="error-message">
-                Неверное имя пользователя или пароль
-            </div>
+        <div th:if="${error}" class="alert alert-error">
+            ⚠️ <span th:text="${error}">Ошибка входа</span>
+        </div>
 
+        <div th:if="${message}" class="alert alert-success">
+            ✓ <span th:text="${message}">Успешно</span>
+        </div>
+
+        <form method="post" th:action="@{/login}">
             <div class="form-group">
-                <label for="username">Имя пользователя</label>
-                <input type="text" id="username" name="username" placeholder="Введите ваш логин" required>
-                <div class="input-icon">👤</div>
+                <label for="username">Логин</label>
+                <input type="text" id="username" name="username" required autofocus placeholder="Введите ваш логин">
             </div>
 
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" placeholder="Введите ваш пароль" required>
-                <div class="input-icon">🔒</div>
+                <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
             </div>
 
-            <button type="submit" class="login-btn">
-                <span>Войти в систему</span>
-                <div class="btn-plant"></div>
-            </button>
+            <button type="submit" class="btn-login">Войти в систему</button>
         </form>
 
-        <div class="footer">
-            <p>Школа №137 &copy; 2024. Все права защищены.</p>
+        <div class="demo-credentials">
+            <h3>🔑 Тестовые учетные данные:</h3>
+            <p><strong>Администратор:</strong> <code>admin</code> / <code>admin123</code></p>
+            <p><strong>Учитель:</strong> <code>teacher</code> / <code>teacher123</code></p>
+        </div>
+
+        <div class="plants">
+            <span class="plant">🌿</span>
+            <span class="plant">🌱</span>
+            <span class="plant">🪴</span>
+            <span class="plant">🌾</span>
         </div>
     </div>
 </div>
