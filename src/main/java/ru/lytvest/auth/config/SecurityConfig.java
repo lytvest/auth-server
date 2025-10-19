@@ -151,8 +151,6 @@ public class SecurityConfig {
 
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder()
-                .issuer("https://greenbots.ru")
-                .build();
+        return AuthorizationServerSettings.builder().build();
     }
 }

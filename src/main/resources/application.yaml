@@ -3,6 +3,9 @@ server:
   forward-headers-strategy: framework
   tomcat:
     use-relative-redirects: true
+  servlet:
+    context-path: /ya-auth
+
 
 spring:
   application:
